@@ -1,0 +1,102 @@
+{%extends "layout.html"%} {%block content%}
+
+<form action="/login" method="post">
+  {{form.hidden_tag()}}
+  <section>
+    <div class="leaves">
+      <div class="set">
+        <div><img src="/static/sub-static/leaf_01.png" /></div>
+        <div><img src="/static/sub-static/leaf_02.png" /></div>
+        <div><img src="/static/sub-static/leaf_03.png" /></div>
+        <div><img src="/static/sub-static/leaf_04.png" /></div>
+        <div><img src="/static/sub-static/leaf_01.png" /></div>
+        <div><img src="/static/sub-static/leaf_02.png" /></div>
+        <div><img src="/static/sub-static/leaf_03.png" /></div>
+        <div><img src="/static/sub-static/leaf_04.png" /></div>
+      </div>
+    </div>
+    <img src="/static/sub-static/bg.jpg" alt="pic" class="bg" />
+    <img src="/static/sub-static/girl.png" alt="girl" class="girl" />
+    <div class="login">
+      <h2>Login</h2>
+
+      <div class="inputBox">
+        <div>
+          {{form.email.label(class='form-control-label')}} {% if
+          form.email.errors %} {{ form.email(class='form-control form-control-lg
+          is-invalid')}}
+          <div class="invalid-feedback">
+            {% for error in form.email.errors %}
+            <span>{{error}}</span>
+            {% endfor %}
+          </div>
+          {% else %} {{form.email(class='form-control form-control-lg')}} {%
+          endif %}
+        </div>
+      </div>
+
+      <div class="inputBox">
+        <div>
+          {{form.password.label(class='form-control-label')}} {% if
+          form.password.errors %} {{ form.password(class='form-control
+          form-control-lg is-invalid')}}
+          <div class="invalid-feedback">
+            {% for error in form.password.errors %}
+            <span>{{error}}</span>
+            {% endfor %}
+          </div>
+          {% else %} {{form.password(class='form-control form-control-lg')}} {%
+          endif %}
+        </div>
+      </div>
+
+      <div class="form-check">
+        {{form.remember(class='form-check-input')}}
+        {{form.remember.label(class='form-check-label')}}
+      </div>
+
+      <div class="group">
+        <p style="color: black">Need an account?</p>
+        <a href="{{url_for('register')}}">Sign up</a>
+      </div>
+      <div class="group">
+        <a href="#">Forgot Password?</a>
+      </div>
+      <div class="inputBox">
+        <input type="submit" value="sign-up" />
+      </div>
+    </div>
+    <img src="/static/sub-static/trees.png" alt="trees" class="trees" />
+  </section>
+</form>
+<!-- <div class="inputBox">
+        <label for="login" class="form-label">Email address</label>
+        <input
+          name="email"
+          type="text"
+          class="form-control"
+          placeholder="Enter email"
+          id="exampleInputEmail1"
+          aria-describedby="emailHelp"
+        />
+      </div>
+      <div class="inputBox">
+        <label for="password" class="form-label">Password</label>
+        <input
+          name="password"
+          type="password"
+          placeholder="Enter password"
+          class="form-control"
+          id="exampleInputPassword1"
+        />
+      </div>
+      <div class="inputBox">
+        <input type="submit" value="Login" id="btn" />
+      </div>
+      <div class="group">
+        <a href="#">Forget Password</a>
+        <a href="{{url_for('register')}}">Sign up</a>
+      </div>
+    </div> -->
+
+{% endblock %}

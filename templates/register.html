@@ -1,0 +1,139 @@
+{%extends "layout.html"%} {% block content %}
+<form action="/register" method="post">
+  <!-- used for security purposes -->
+  {{ form.hidden_tag() }}
+  <section>
+    <div class="leaves">
+      <div class="set">
+        <div><img src="/static/sub-static/leaf_01.png" /></div>
+        <div><img src="/static/sub-static/leaf_02.png" /></div>
+        <div><img src="/static/sub-static/leaf_03.png" /></div>
+        <div><img src="/static/sub-static/leaf_04.png" /></div>
+        <div><img src="/static/sub-static/leaf_01.png" /></div>
+        <div><img src="/static/sub-static/leaf_02.png" /></div>
+        <div><img src="/static/sub-static/leaf_03.png" /></div>
+        <div><img src="/static/sub-static/leaf_04.png" /></div>
+      </div>
+    </div>
+    <img src="/static/sub-static/bg.jpg" alt="pic" class="bg" />
+    <img src="/static/sub-static/girl.png" alt="girl" class="girl" />
+    <div class="login">
+      <h2>Sign Up</h2>
+
+      <div class="inputBox">
+        <div>
+          {{form.username.label(class='form-control-label')}} 
+          {% if form.username.errors %}
+          {{form.username(placeholder='test')}}
+          {{form.username(class='form-control form-control-lg is-invalid')}}
+          <div class="invalid-feedback">
+            {% for error in form.username.errors %}
+            <span>{{error}}</span>
+            {% endfor %}
+          </div>
+          {% else %} 
+          {{form.username(class='form-control form-control-lg')}} 
+          {% endif %}
+        </div>
+      </div>
+        
+      <div class="inputBox">
+        <div>
+          {{form.email.label(class='form-control-label')}} 
+          {% if form.email.errors %}
+          {{ form.email(class='form-control form-control-lg is-invalid')}}
+          <div class="invalid-feedback">
+            {% for error in form.email.errors %}
+            <span>{{error}}</span>
+            {% endfor %}
+          </div>
+          {% else %} 
+          {{form.email(class='form-control form-control-lg')}}
+          {% endif %}
+        </div>
+      </div>
+
+      <div class="inputBox">
+        <div>
+          {{form.password.label(class='form-control-label')}} 
+          {% if form.password.errors %} 
+          {{ form.password(class='form-control form-control-lg is-invalid')}}
+          <div class="invalid-feedback">
+            {% for error in form.password.errors %}
+            <span>{{error}}</span>
+            {% endfor %}
+          </div>
+          {% else %}
+          {{form.password(class='form-control form-control-lg')}}
+          {% endif %}
+        </div>
+      </div>
+
+      <div class="inputBox">
+        
+          {{form.confirm_password.label(class='form-control-label')}}
+          {% if form.confirm_password.errors %}
+          {{ form.confirm_password(class='form-control form-control-lg is-invalid')}}
+          <div class="invalid-feedback">
+            {% for error in form.confirm_password.errors %}
+            <span>{{error}}</span>
+            {% endfor %}
+          </div>
+          {% else %} 
+          {{form.confirm_password(class='form-control form-control-lg')}}
+          {% endif %}
+        
+      </div>
+
+      <div class="inputBox">
+        <input type="submit" value="sign-up">
+      </div>
+
+      <div>
+        <p>Already have an account?</p>
+        <a href="{{url_for('login')}}">Login</a>
+      </div>
+    </div>
+  </section>
+</form>
+  
+  {% endblock %}
+
+
+      <!-- <div class="inputBox">
+        <label for="email" class="form-label">Email</label>
+        <input
+          name="email"
+          type="email"
+          class="form-control"
+          id="exampleInputPassword1"
+        />
+      </div>
+      <div class="inputBox">
+        <label for="password" class="form-label">Password</label>
+        <input
+          name="password"
+          type="password"
+          class="form-control"
+          id="exampleInputPassword1"
+        />
+      </div>
+      <div class="inputBox">
+        <label for="password" class="form-label">Confirm Password</label>
+        <input
+          name="password"
+          type="password"
+          class="form-control"
+          id="exampleInputPassword1"
+        />
+      </div>
+      <div class="inputBox">
+        <input type="submit" value="Login" id="btn" />
+      </div>
+      <div class="group">
+        <a href="#">Forget Password</a>
+        <a href="{{url_for('login')}}">Sign In</a>
+      </div>
+    </div> -->
+    <!-- <img src="/static/sub-static/trees.png" alt="trees" class="trees" /> -->
+

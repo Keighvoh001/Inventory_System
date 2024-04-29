@@ -1,0 +1,132 @@
+{% extends "layout.html" %}
+{% block content %}
+
+
+<!-- Button trigger modal -->
+<div  style="margin-top: 20px;margin-left: 45% " >
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    Add new items
+  </button>
+</div>
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">add products</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form action="/add_products" method="post">
+                <div class="mb-3">
+                  <label for="exampleInputEmail1" class="form-label">product name</label>
+                  <input name="product_name" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">buying price</label>
+                    <input name="buying_price" type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                  </div>
+                  <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">selling price</label>
+                    <input name="selling_price" type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                  </div>
+                  <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Stock quantity</label>
+                    <input name="stock_quantity" type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                  </div>
+
+                  <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    
+                  </div>
+                  </div>
+                
+              </form>
+        
+      </div>
+    </div>
+  </div>
+  <div class="container" ></div>
+<table id="example" class="table table-striped" style="width:100%">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Products name</th>
+            <th>Buying price</th>
+            <th>Selling price</th>
+            <th>Stock quantity</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr {%for i in prods%}>
+            <td>{{i.id}}</td>
+            <td>{{i.product_name}}</td>
+            <td>{{i.buying_price}}</td>
+            <td>{{i.selling_price}}</td>
+            <td>{{i.stock_quantity}}</td>
+            <td>
+                <a href="/update/{{i.id}}"  class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modaledit{{i.id}}">
+                  <i class="fa-solid fa-pen-to-square"></i> 
+                  
+                </a>
+                  <a href="/delete/{{i.id}}" class="btn btn-danger btn-xs" onclick="return confirm('Are you sure you want to delete?')" ><i class="fa-solid fa-trash"></i></a>
+            </td>
+        </tr >
+        
+<!-- editing a product -->
+<div class="modal fade" id="modaledit{{i.id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Update products</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+          <form action="{{url_for('update')}}" method="post">
+              <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">product name</label>
+                <input name="id" type="hidden"   value="{{i.id}}">
+                <input name="product_name" type="text" class="form-control"  value="{{i.product_name}}">
+              </div>
+              <div class="mb-3">
+                  <label for="exampleInputEmail1" class="form-label">buying price</label>
+                  <input name="buying_price" type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{i.buying_price}}">
+                </div>
+                <div class="mb-3">
+                  <label for="exampleInputEmail1" class="form-label">selling price</label>
+                  <input name="selling_price" type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{i.selling_price}}">
+                </div>
+                <div class="mb-3">
+                  <label for="exampleInputEmail1" class="form-label">Stock quantity</label>
+                  <input name="stock_quantity" type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{i.stock_quantity}}">
+                </div>
+
+                <div class="modal-footer">
+                  <button type="submit" class="btn btn-primary">Update</button>
+                  
+                </div>
+              </div>
+              
+          </form>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          {%endfor%}
+
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</div>
+        </tbody>
+</table>
+</div>
+
+
+              
+  
+
+
+
+{% endblock %}
