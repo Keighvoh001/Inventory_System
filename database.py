@@ -59,14 +59,15 @@ def profits ():
     return results
 
 def day_sales():
-    d_sales = 'select DATE(created_at) as date_only, sum(selling_price) \
+    d_sales = 'select DATE(created_at) as date_only, sum((selling_price)*quantity) \
         as total_sales from sales as s join products as p on p.id=s.pid group by date_only order by date_only;'
     cur.execute(d_sales)
     result=cur.fetchall()
     return result
 
+# profit per day
 def profits_day():
-    d_profits='select DATE(created_at) as date_only, sum((selling_price-buying_price)*quantity) \
+    d_profits='select DATE(created_at) as date_only, sum(selling_price-buying_price) \
         as profits from sales as s join products as p on p.id=s.pid group by date_only order by date_only;'
     cur.execute(d_profits)
     result = cur.fetchall()
@@ -78,7 +79,7 @@ def total_profit():
     cur.execute(faida)
     result= cur.fetchall()
     return result
-# profit per day
+# profit for today
 def d_profit():
     day_profit="SELECT TO_CHAR(CURRENT_DATE, 'YYYY/MM/DD') as date_only,round(sum(selling_price-buying_price),2) as profits from sales \
         as s join products as p on p.id=s.pid group by date_only order by date_only limit 1;"
