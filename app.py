@@ -12,7 +12,7 @@ from flask_bcrypt import Bcrypt
 from flask_migrate import Migrate 
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:123456789@localhost/inventory_system'
+app.config["SQLALCHEMY_DATABASE_URI"] = 'postgresql://postgres:123456789@localhost/inventory_system'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SECRET_KEY'] = 'thisisasecretkey'
 db = SQLAlchemy(app)
@@ -120,8 +120,8 @@ def logout():
     logout_user()
     flash('You have been successfully logged out', 'success')
     return redirect(url_for('home'))
-9
- 
+
+
 @app.route('/products')
 @login_required
 def products():
